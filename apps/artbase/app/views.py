@@ -7,7 +7,6 @@ def index(request):
         form = MainForm(request.POST)
         if form.is_valid():
             form.save()
-            # Przekierowanie lub wykonanie innych działań po zapisaniu formularza
     else:
         form = MainForm()
 
