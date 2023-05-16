@@ -1,0 +1,45 @@
+
+.content {
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    line-height: 3em;
+    padding: 5%;
+}
+
+.header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: 'Raleway', sans-serif;
+}
+
+input {
+    background-color: rgb(245, 252, 252);
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 400px;
+    padding: 3%;
+}
+
+select {
+    background-color: rgb(245, 252, 252);
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 400px;
+    padding: 3%;
+}
+
+.button {
+    padding: 3%;
+    background-color: lightgrey;
+}
+
+.button:hover {
+    font-weight: bold;
+}
+
+
+
