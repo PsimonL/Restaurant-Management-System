@@ -28,7 +28,7 @@ select {
     background-color: rgb(245, 252, 252);
     border: 1px solid grey;
     border-radius: 10px;
-    width: 400px;
+    width: 425px;
     padding: 3%;
 }
 
@@ -39,6 +39,7 @@ select {
 
 .button:hover {
     font-weight: bold;
+    width: 425px;
 }
 
 

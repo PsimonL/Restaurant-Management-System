@@ -1,5 +1,5 @@
-from django.forms import ModelForm, TextInput, Select
-from .models import Customer, Catalog
+from django.forms import ModelForm, TextInput, Select, ModelChoiceField
+from .models import Customer, Catalog, Order
 
 class CustomerForm(ModelForm):
     class Meta:
@@ -29,6 +29,18 @@ class FoodForm(ModelForm):
             'food_name': TextInput(),
             'food_price': TextInput()
         }
+
+class OrderForm(ModelForm):
+    class Meta:
+        model = Order
+        fields = '__all__'
+        widgets = {
+            'order_type': Select(choices={
+                ("Phone call", "Phone call"),
+                ("Stationary", "Stationary")
+            }),
+        }
+
 
 
 

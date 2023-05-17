@@ -22,14 +22,10 @@
         <form action="" method="post" class="content">
             {% csrf_token %}
             {{ form_customer }}
-            <br/>
-            <input type="submit" value="Submit Customer" class="button">
-        </form>
-        <form action="" method="post" class="content">
-            {% csrf_token %}
             {{ form_food }}
+            {{ form_order }}
             <br/>
-            <input type="submit" value="Submit Order" class="button">
+            <input type="submit" value="Submit" class="button">
         </form>
     </div>
 </body>
