@@ -1,5 +1,5 @@
-from django.forms import ModelForm, TextInput, Select, ModelChoiceField
-from .models import Customer, Catalog, Order
+from django.forms import ModelForm, TextInput, Select, ModelChoiceField, CheckboxInput, BooleanField
+from .models import Customer, Catalog, Order, Employee
 
 class CustomerForm(ModelForm):
     class Meta:
@@ -7,18 +7,14 @@ class CustomerForm(ModelForm):
         fields = '__all__'
         widgets = {
             'customer_name': TextInput(),
-            'customer_type': Select(choices={
-                ("A", "A"),
-                ("B", "B"),
-                ("C", "C"),
-                ("D", "D"),
+            'customer_status': BooleanField(),
+            'customer_address': Select(choices={
+                ("Area A", "Area A"),
+                ("Area B", "Area B"),
+                ("Area C", "Area C"),
+                ("Area D", "Area D"),
             }),
-            'customer_location': Select(choices={
-                ("A", "A"),
-                ("B", "B"),
-                ("C", "C"),
-                ("D", "D"),
-            })
+            'customer_contact': TextInput()
         }
 
 class FoodForm(ModelForm):
@@ -27,19 +23,24 @@ class FoodForm(ModelForm):
         fields = '__all__'
         widgets = {
             'food_name': TextInput(),
-            'food_price': TextInput()
+            'food_price': TextInput(),
+            'food_description': TextInput()
+        }
+
+class EmployeeForm(ModelForm):
+    class Meta:
+        model = Employee
+        fields = '__all__'
+        widgets = {
+            'employee_name': TextInput()
         }
 
 class OrderForm(ModelForm):
     class Meta:
         model = Order
         fields = '__all__'
-        widgets = {
-            'order_type': Select(choices={
-                ("Phone call", "Phone call"),
-                ("Stationary", "Stationary")
-            }),
-        }
+
+    
 
 
 

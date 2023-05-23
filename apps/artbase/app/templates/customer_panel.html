@@ -10,23 +10,21 @@
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <title>Restaurant Management</title>
+        <title>Customer Panel</title>
     </head>
 </html>
 
 <body>
     <div>
         <div class="header">
-            <h1>Restaurant Management System</h1>
+            <h1>Customer Panel</h1>
         </div>
         <form action="" method="post" class="content">
-            {% csrf_token %}
-            {{ form_customer }}
-            {{ form_food }}
-            {{ form_order }}
-            <br/>
+            <div style="display: grid; align-items: center;">
+                {% csrf_token %}
+                {{ form_customer }}
+            </div>
             <input type="submit" value="Submit" class="button">
         </form>
     </div>
 </body>
-
