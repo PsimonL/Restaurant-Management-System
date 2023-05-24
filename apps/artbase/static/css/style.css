@@ -123,11 +123,11 @@ p {
   z-index: 1;
   position: relative;
 }
+
 .inputContainer{
   display:flex;
   justify-content:space-between;
   align-items:space-between;
-
   margin: 20px; 
 }
 
