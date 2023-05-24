@@ -7,7 +7,7 @@ class CustomerForm(ModelForm):
         fields = '__all__'
         widgets = {
             'customer_name': TextInput(),
-            'customer_status': BooleanField(),
+            'customer_status': TextInput(),
             'customer_address': Select(choices={
                 ("Area A", "Area A"),
                 ("Area B", "Area B"),
