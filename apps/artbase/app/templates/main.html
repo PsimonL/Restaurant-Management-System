@@ -23,14 +23,11 @@
       <h1>Restaurant Management System</h1>
     </div>
     <div class="menu">
-      <a href="{% url 'food_panel' %}" style="text-decoration: none; cursor: pointer;" class="option">
-        <p>MENU PANEL</p>
+      <a href="{% url 'food_panel' %}" style="text-decoration: none; cursor: pointer;">
+        <button class="button-48" role="button"><span class="text">Food Panel</span></button>
       </a>
-      <a href="{% url 'order_panel' %}" style="text-decoration: none; cursor: pointer;" class="option">
-        <p>ORDER PANEL</p>
-      </a>
-      <a href="{ url 'food_panel' %}" style="text-decoration: none; cursor: pointer;" class="option">
-        <p>CUSTOMER PANEL</p>
+      <a href="{% url 'order_panel' %}" style="text-decoration: none; cursor: pointer;">
+        <button class="button-48" role="button"><span class="text">Order Panel</span></button>
       </a>
     </div>
   </div>
