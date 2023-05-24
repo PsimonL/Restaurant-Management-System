@@ -22,13 +22,25 @@
     <div class="header">
       <h1>Restaurant Management System</h1>
     </div>
-    <div class="menu">
+    <div style="display:flex; justify-content:space-evenly; padding: 2%; ">
       <a href="{% url 'food_panel' %}" style="text-decoration: none; cursor: pointer;">
         <button class="button-48" role="button"><span class="text">Food Panel</span></button>
+      </a>
+      <a href="{% url 'customer_panel' %}" style="text-decoration: none; cursor: pointer;">
+        <button class="button-48" role="button"><span class="text">Customer Panel</span></button>
       </a>
       <a href="{% url 'order_panel' %}" style="text-decoration: none; cursor: pointer;">
         <button class="button-48" role="button"><span class="text">Order Panel</span></button>
       </a>
+    </div>
+    <div style="display:grid; justify-content:space-evenly;">
+      <p>GENERATE REPORT</p>
+      <div  class="inputContainer">
+
+        <input name="date1"  type="date"/>
+        <input name="date2"  type="date"/>
+      </div>
+      <button class="button-48" role="button" type="submit"><span class="text">Submit</span></button>
     </div>
   </div>
 </body>

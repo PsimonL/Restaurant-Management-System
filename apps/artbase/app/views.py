@@ -1,10 +1,12 @@
 from django.shortcuts import render
 from .forms import CustomerForm, FoodForm, OrderForm
+from .data_processing import Calculator
 
 def index(request):
 
     form_food = FoodForm(prefix='form_food')
     form_order = OrderForm(prefix='form_order')
+    calculator = Calculator()
 
     if request.method == 'POST':
         form_food = FoodForm(request.POST, prefix='form_food')

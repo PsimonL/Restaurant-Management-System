@@ -6,17 +6,13 @@ class CustomerForm(ModelForm):
         model = Customer
         fields = '__all__'
         widgets = {
-            'customer_name': TextInput(attrs={
-                'class': 'button-48'            
-            }),
-            'customer_status': BooleanField(),
+            'customer_name': TextInput(),
+            'customer_status': TextInput(),
             'customer_address': Select(choices={
                 ("Area A", "Area A"),
                 ("Area B", "Area B"),
                 ("Area C", "Area C"),
                 ("Area D", "Area D"),
-            }, attrs={
-                'class': 'button-48'            
             }),
             'customer_contact': TextInput()
         }
@@ -26,15 +22,9 @@ class FoodForm(ModelForm):
         model = Catalog
         fields = '__all__'
         widgets = {
-            'food_name': TextInput(attrs={
-                'class': 'button-48'            
-            }),
-            'food_price': TextInput(attrs={
-                'class': 'button-48'            
-            }),
-            'food_description': TextInput(attrs={
-                'class': 'button-48'            
-            })
+            'food_name': TextInput(),
+            'food_price': TextInput(),
+            'food_description': TextInput()
         }
 
 class EmployeeForm(ModelForm):
@@ -42,15 +32,15 @@ class EmployeeForm(ModelForm):
         model = Employee
         fields = '__all__'
         widgets = {
-            'employee_name': TextInput(attrs={
-                'class': 'button-48'            
-            })
+            'employee_name': TextInput()
         }
 
 class OrderForm(ModelForm):
     class Meta:
         model = Order
         fields = '__all__'
+
+
 
     
 
