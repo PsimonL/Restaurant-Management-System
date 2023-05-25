@@ -9,17 +9,16 @@
 }
 
 .header {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    display: block;
+    text-align: center;
+    justify-content: left;
     font-family: 'Raleway', sans-serif;
-    padding: 2%;
 }
 
 input {
     background-color: rgb(245, 252, 252);
-    width: 400px;
-    padding: 3%;
+    width: 300px;
+    padding: 1.5em 2.2em;
     line-height: 1em;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     border: 0;
@@ -27,11 +26,16 @@ input {
 
 select {
     background-color: rgb(245, 252, 252);
-    width: 425px;
-    padding: 3%;
+    width: 356px;
+    padding: 1.5em 2.2em;
     line-height: 1em;
     box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
     border: 0;
+}
+
+select::after {
+  content: '\25BC';
+  padding: 0em 1em;
 }
 
 .form {
@@ -47,11 +51,15 @@ select {
 }
 
 p {
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold;
+    font-family: Clarkson,Helvetica,sans-serif;
+    font-weight: 100;
     line-height: 1.5em;
     text-decoration: none;
     color: black;
+}
+
+a {
+  padding: 1%;
 }
 
 .button-48 {
@@ -116,9 +124,25 @@ p {
 
 .inputContainer{
   display:flex;
-  justify-content:space-between;
-  align-items:space-between;
-  margin: 20px; 
+  justify-content: center;
+  align-items: center;
+  margin: 0px;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.report {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  margin-top: 5%;
+  margin-bottom: 5%;
+}
+
+.report.show {
+  opacity: 1;
 }
 
 

@@ -1,5 +1,7 @@
 {% load static %}
 
+
+
 <!DOCTYPE html>
 <html lang="pl">
   <head>
@@ -12,35 +14,48 @@
       href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap"
       rel="stylesheet"
     />
-    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <link rel="stylesheet" href="/static/css/style.css" />
+    <script src="/static/js/script.js"></script>
     <title>Restaurant Management</title>
   </head>
 </html>
-
 <body>
   <div style="display: grid">
     <div class="header">
-      <h1>Restaurant Management System</h1>
+      <h1 style="text-align: center; padding: 1%; width: 100%;">Restaurant Management System</h1>
+      <p>User-friendly panel for handling restaurant's events.</p>
     </div>
-    <div style="display:flex; justify-content:space-evenly; padding: 2%; ">
-      <a href="{% url 'food_panel' %}" style="text-decoration: none; cursor: pointer;">
+    <div style="display:flex; justify-content: center; margin-top: 0%; margin-bottom: 5%;">
+      <a href="/food_panel" style="text-decoration: none; cursor: pointer;">
         <button class="button-48" role="button"><span class="text">Food Panel</span></button>
       </a>
-      <a href="{% url 'customer_panel' %}" style="text-decoration: none; cursor: pointer;">
+      <a href="/customer_panel" style="text-decoration: none; cursor: pointer;">
         <button class="button-48" role="button"><span class="text">Customer Panel</span></button>
       </a>
-      <a href="{% url 'order_panel' %}" style="text-decoration: none; cursor: pointer;">
+      <a href="/order_panel" style="text-decoration: none; cursor: pointer;">
         <button class="button-48" role="button"><span class="text">Order Panel</span></button>
+      </a>
+      <a href="/order_panel" style="text-decoration: none; cursor: pointer;">
+        <button class="button-48" role="button"><span class="text">Delivery Panel</span></button>
       </a>
     </div>
     <div style="display:grid; justify-content:space-evenly;">
-      <p>GENERATE REPORT</p>
-      <div  class="inputContainer">
-
-        <input name="date1"  type="date"/>
-        <input name="date2"  type="date"/>
+      <p style="text-align: center; margin: 0;">GENERATE REPORT</p>
+      <p style="text-align: center; font-weight: 100;">This section allows you to list all orders made between two dates.</p>
+      <div class="inputContainer">
+        <div style="padding: 1%;"> 
+          <input id="date1" name="date1" type="date"/>
+        </div>
+        <div style="padding: 1%;">
+          <input  id="date2" name="date2" type="date"/>
+        </div>
       </div>
-      <button class="button-48" role="button" type="submit"><span class="text">Submit</span></button>
+      <div style="display:flex; justify-content: center; align-items: center;">
+        <button id="reportButton" class="button-48" role="button" type="submit" onclick="showReport()"><span class="text">Submit</span></button>
+      </div>
+      <div id="report" class="report">
+        <p style="text-align: center;">OFFICIAL REPORT</p>
+      </div>
     </div>
   </div>
 </body>
