@@ -1,4 +1,4 @@
-from django.forms import ModelForm, TextInput, Select, ModelChoiceField, CheckboxInput, BooleanField
+from django.forms import ModelForm, TextInput, Select, DateInput
 from .models import Customer, Catalog, Order, Employee
 
 class CustomerForm(ModelForm):
@@ -39,6 +39,15 @@ class OrderForm(ModelForm):
     class Meta:
         model = Order
         fields = '__all__'
+        widgets = {
+            'customer': Select(),
+            'employee': Select(),
+            'food': Select(),
+            'date': DateInput(format='%d/%m/%Y', attrs={
+                'type': 'date'
+            })
+        }
+        
 
 
 

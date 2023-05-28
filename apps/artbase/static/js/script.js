@@ -8,11 +8,19 @@ function showReport() {
     console.log("Date 1:", date1Value);
     console.log("Date 2:", date2Value);
 
-    var reportElement = document.getElementById("report");
+    fetch("/api/order_endpoint")
+        .then(res => res.json())
+        .then(res => {
+            console.log(res);
+            var reportElement = document.getElementById("report");
+            reportElement.innerHTML = "";
 
-    var paragraphInfo = document.createElement("p");
-    paragraphInfo.textContent = "This report contains all orders form " + date1Value + " to " + date2Value + ".";
-    reportElement.appendChild(paragraphInfo);
+            var paragraphInfo = document.createElement("p");
+            paragraphInfo.textContent = "This report contains all orders form " + date1Value + " to " + date2Value + ".";
+            reportElement.appendChild(paragraphInfo);
+            reportElement.classList.toggle("show");
 
-    reportElement.classList.toggle("show");
+            buttonDescriptionElement = document.getElementById("buttonDescription")
+            buttonDescriptionElement.textContent = reportElement.classList.contains("show") ? "Hide" : "Submit";
+        })
 }
