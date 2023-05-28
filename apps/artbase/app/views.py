@@ -4,8 +4,8 @@ from .forms import CustomerForm, FoodForm, OrderForm
 from .data_processing import Calculator
 from .models import Order, Customer, Catalog, Employee
 
-def index(request):
 
+def index(request):
     form_food = FoodForm(prefix='form_food')
     form_order = OrderForm(prefix='form_order')
     calculator = Calculator()
@@ -23,8 +23,8 @@ def index(request):
     context = {'form_food': form_food, 'form_order': form_order}
     return render(request, 'main.html', context)
 
+
 def customer_panel(request):
-    
     form_customer = CustomerForm(prefix='form_customer')
     if request.method == 'POST':
         form_customer = CustomerForm(request.POST, prefix='form_customer')
@@ -35,6 +35,7 @@ def customer_panel(request):
 
     context = {'form_customer': form_customer}
     return render(request, 'customer_panel.html', context=context)
+
 
 def food_panel(request):
     form_food = FoodForm(prefix='form_food')
@@ -48,6 +49,7 @@ def food_panel(request):
     context = {'form_food': form_food}
     return render(request, 'food_panel.html', context=context)
 
+
 def order_panel(request):
     form_order = OrderForm(prefix='form_order')
     if request.method == 'POST':
@@ -60,6 +62,7 @@ def order_panel(request):
     context = {'form_order': form_order}
     return render(request, 'order_panel.html', context=context)
 
+
 def order_endpoint(request):
     orders = Order.objects.all()
     data = {
@@ -67,14 +70,15 @@ def order_endpoint(request):
             {
                 'id': order.id,
                 'date': order.date,
-                'customer_id': order.customer_id,
-                'employee_id': order.employee_id,
+                'customer_id': "C" + str(order.customer_id),
+                'employee_id': "E" + str(order.employee_id),
                 'food_id': order.food_id
             }
             for order in orders
         ]
     }
     return JsonResponse(data=data)
+
 
 def customer_endpoint(request):
     customers = Customer.objects.all()
@@ -108,6 +112,7 @@ def catalog_endpoint(request):
     }
     return JsonResponse(data=data)
 
+
 def employee_endpoint(request):
     employees = Employee.objects.all()
     data = {
@@ -120,5 +125,3 @@ def employee_endpoint(request):
         ]
     }
     return JsonResponse(data=data)
-
-
