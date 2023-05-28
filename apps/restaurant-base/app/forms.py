@@ -1,21 +1,26 @@
 from django.forms import ModelForm, TextInput, Select, DateInput
 from .models import Customer, Catalog, Order, Employee
 
+
 class CustomerForm(ModelForm):
     class Meta:
         model = Customer
         fields = '__all__'
         widgets = {
             'customer_name': TextInput(),
-            'customer_status': TextInput(),
+            'customer_status': Select(choices={
+                ("not VIP", "not VIP"),
+                ("VIP", "VIP")
+            }),
             'customer_address': Select(choices={
-                ("Area A", "Area A"),
-                ("Area B", "Area B"),
-                ("Area C", "Area C"),
-                ("Area D", "Area D"),
+                ("Area A #postalcode", "Area A #postalcode"),
+                ("Area B #postalcode", "Area B #postalcode"),
+                ("Area C #postalcode", "Area C #postalcode"),
+                ("Area D #postalcode", "Area D #postalcode"),
             }),
             'customer_contact': TextInput()
         }
+
 
 class FoodForm(ModelForm):
     class Meta:
@@ -27,6 +32,7 @@ class FoodForm(ModelForm):
             'food_description': TextInput()
         }
 
+
 class EmployeeForm(ModelForm):
     class Meta:
         model = Employee
@@ -34,6 +40,7 @@ class EmployeeForm(ModelForm):
         widgets = {
             'employee_name': TextInput()
         }
+
 
 class OrderForm(ModelForm):
     class Meta:
@@ -47,12 +54,3 @@ class OrderForm(ModelForm):
                 'type': 'date'
             })
         }
-        
-
-
-
-    
-
-
-
-
