@@ -1,6 +1,7 @@
 from django.forms import ModelForm, TextInput, Select, DateInput
 from .models import Customer, Catalog, Order, Employee
 
+
 class CustomerForm(ModelForm):
     class Meta:
         model = Customer
@@ -17,6 +18,7 @@ class CustomerForm(ModelForm):
             'customer_contact': TextInput()
         }
 
+
 class FoodForm(ModelForm):
     class Meta:
         model = Catalog
@@ -27,6 +29,7 @@ class FoodForm(ModelForm):
             'food_description': TextInput()
         }
 
+
 class EmployeeForm(ModelForm):
     class Meta:
         model = Employee
@@ -34,6 +37,7 @@ class EmployeeForm(ModelForm):
         widgets = {
             'employee_name': TextInput()
         }
+
 
 class OrderForm(ModelForm):
     class Meta:
@@ -47,12 +51,3 @@ class OrderForm(ModelForm):
                 'type': 'date'
             })
         }
-        
-
-
-
-    
-
-
-
-
