@@ -1,6 +1,6 @@
 from django.shortcuts import render
 from django.http import JsonResponse
-from .forms import CustomerForm, FoodForm, OrderForm
+from .forms import CustomerForm, FoodForm, OrderForm, EmployeeForm
 from .data_processing import Calculator
 from .models import Order, Customer, Catalog, Employee
 
@@ -62,13 +62,25 @@ def order_panel(request):
     context = {'form_order': form_order}
     return render(request, 'order_panel.html', context=context)
 
+def employee_panel(request):
+    form_employee = EmployeeForm(prefix='form_employee')
+    if request.method == 'POST':
+        form_employee = EmployeeForm(request.POST, prefix='form_employee')
+        if form_employee.is_valid():
+            form_employee.save()
+    else:
+        form_employee = EmployeeForm()
+
+    context = {'form_employee': form_employee}
+    return render(request, 'employee_panel.html', context=context)
+
 
 def order_endpoint(request):
     orders = Order.objects.all()
     data = {
         'order': [
             {
-                'id': order.id,
+                'id': "O" + str(order.id),
                 'date': order.date,
                 'customer_id': "C" + str(order.customer_id),
                 'employee_id': "E" + str(order.employee_id),
