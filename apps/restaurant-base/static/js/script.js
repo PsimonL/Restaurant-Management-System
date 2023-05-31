@@ -32,6 +32,7 @@ function showReport() {
       const orders = res.order;
       const foodItems = res.foodItems;
       const orderItems = res.orderItems;
+      const customers = res.customers;
 
       var header = document.createElement('tr');
       Object.keys(orders[0]).forEach((key) => {
@@ -57,12 +58,33 @@ function showReport() {
         })
         .forEach((order) => {
           var row = document.createElement('tr');
-          Object.keys(order).forEach((key) => {
-            var keyCell = document.createElement('td');
-            keyCell.textContent = order[key].substring(0, 10);
-            keyCell.className = key;
-            row.appendChild(keyCell);
-          });
+
+          var keyCell = document.createElement('td');
+          keyCell.textContent = order['id'];
+          keyCell.className = 'id';
+          row.appendChild(keyCell);
+
+          var keyCell = document.createElement('td');
+          keyCell.textContent = order['date'].substring(0, 10);
+          keyCell.className = 'date';
+          row.appendChild(keyCell);
+
+          var keyCell = document.createElement('td');
+          keyCell.textContent =
+            order['customer_id'] +
+            `(${
+              customers.filter(
+                (customer) => customer.id === order.customer_id
+              )[0].name
+            })`;
+          keyCell.className = 'customer_id';
+          row.appendChild(keyCell);
+
+          var keyCell = document.createElement('td');
+          keyCell.textContent = order['employee_id'];
+          keyCell.className = 'employee_id';
+          row.appendChild(keyCell);
+
           var keyCell = document.createElement('td');
           const names = orderItems
             .filter((item) => item.id === order.id)
