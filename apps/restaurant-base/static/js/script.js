@@ -56,6 +56,22 @@ function showReport() {
           const objDate = new Date(order.date);
           return objDate >= startDate && objDate <= endDate;
         })
+        .sort((a, b) => {
+          const dateA = new Date(a.date);
+          const dateB = new Date(b.date);
+          if (dateA.getTime() === dateB.getTime()) {
+            const customerA = customers.filter(
+              (customer) => customer.id === a.customer_id
+            )[0].name;
+            const customerB = customers.filter(
+              (customer) => customer.id === b.customer_id
+            )[0].name;
+            return customerA.localeCompare(customerB);
+          }
+          return dateA - dateB;
+        })
+
+
         .forEach((order) => {
           var row = document.createElement('tr');
 
