@@ -1,5 +1,5 @@
-from django.forms import ModelForm, TextInput, Select, DateInput
-from .models import Customer, Catalog, Order, Employee
+from django.forms import ModelForm, TextInput, Select, DateInput,formset_factory,ModelChoiceField
+from .models import Customer, Catalog, Order, Employee,OrderItem
 
 
 class CustomerForm(ModelForm):
@@ -41,16 +41,28 @@ class EmployeeForm(ModelForm):
             'employee_name': TextInput()
         }
 
+class CatalogChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.catalog_dish
+class CustomerChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.customer_name
+class EmployeeChoiceField(ModelChoiceField):
+    def label_from_instance(self, obj):
+        return obj.areaCode
 
 class OrderForm(ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['customer'] = CustomerChoiceField(queryset=Customer.objects.all(), required=True)
+        self.fields['employee'] = EmployeeChoiceField(queryset=Employee.objects.all(), required=True)
+        self.fields['item_id'] = CatalogChoiceField(queryset=Catalog.objects.all(), required=True)
+
     class Meta:
         model = Order
         fields = '__all__'
         widgets = {
-            'customer': Select(),
-            'employee': Select(),
-            'food': Select(),
             'date': DateInput(format='%d/%m/%Y', attrs={
                 'type': 'date'
-            })
+            }),
         }

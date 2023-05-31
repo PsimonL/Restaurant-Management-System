@@ -2,40 +2,84 @@
 
 <!DOCTYPE html>
 <html lang="pl">
-    <head>
-        <meta charset="UTF-8">
-        <meta http-equiv="X-UA_Compatible" content="IE-Edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0" />
-        <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="{% static 'css/style.css' %}">
-        <title>Order Panel</title>
-    </head>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA_Compatible" content="IE-Edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@48,400,0,0"
+    />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Raleway:wght@200&display=swap"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+    <title>Order Panel</title>
+  </head>
 </html>
 
 <body>
-    <div>
-        <div class="header">
-            <div style="display:flex; justify-content: left;">
-                <a href="/" style="text-decoration: none; cursor: pointer; padding: 0;">
-                    <button class="button-48" style="box-shadow: none;">
-                        <span class="material-symbols-outlined">arrow_back</span>
-                    </button>
-                </a>
-            </div>
-            <h1 style="margin-top: 0;">Customer Panel</h1>
-            <p>Fill form below to register the new order.</p>
-        </div>
-        <form action="" method="post" class="content">
-            <div style="display: grid; align-items: center;">
-                {% csrf_token %}
-                {{ form_order }}
-            </div>
-            <div style="display: flex; justify-content: center; align-items: center; padding: 10%;">
-                <button class="button-48" role="button" type="submit"><span class="text">Submit</span></button>
-            </div>
-        </form>
+  <div>
+    <div class="header">
+      <div style="display: flex; justify-content: left">
+        <a href="/" style="text-decoration: none; cursor: pointer; padding: 0">
+          <button class="button-48" style="box-shadow: none">
+            <span class="material-symbols-outlined">arrow_back</span>
+          </button>
+        </a>
+      </div>
+      <h1 style="margin-top: 0">Customer Panel</h1>
+      <p>Fill form below to register the new order.</p>
     </div>
+    <script>
+      var formCount = 1; // Counter to keep track of the form field count
+
+      // Add click event handler to the plus icon
+      function addFormField() {
+        formCount++;
+        var container = document.getElementById('nextFields');
+        var newSelect = document.createElement('select');
+        newSelect.name = 'item_id_' + formCount;
+
+        var originalSelect = document.getElementById('id_item_id');
+        for (var i = 0; i < originalSelect.options.length; i++) {
+          var option = document.createElement('option');
+          option.value = originalSelect.options[i].value;
+          option.text = originalSelect.options[i].text;
+          newSelect.appendChild(option);
+        }
+
+        container.appendChild(newSelect);
+      }
+    </script>
+    <form action="" method="post" class="content">
+      <div id="nextFields" style="display: grid; align-items: center">
+        {% csrf_token %} {{ form_order }}
+      </div>
+      <button
+        id="addField"
+        class="button-48"
+        type="button"
+        onclick="addFormField()"
+      >
+        +
+      </button>
+
+      <div
+        style="
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          padding: 10%;
+        "
+      >
+        <button class="button-48" role="button" type="submit">
+          <span class="text">Submit</span>
+        </button>
+      </div>
+    </form>
+  </div>
 </body>

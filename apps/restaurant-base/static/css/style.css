@@ -1,36 +1,38 @@
 .content {
-    display: grid;
-    align-items: center;
-    justify-content: center;
-    font-family: 'Raleway', sans-serif;
-    font-weight: bold;
-    line-height: 3em;
-    padding: 2%;
+  display: grid;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Raleway', sans-serif;
+  font-weight: bold;
+  line-height: 3em;
+  padding: 2%;
 }
 
 .header {
-    display: block;
-    text-align: center;
-    justify-content: left;
-    font-family: 'Raleway', sans-serif;
+  display: block;
+  text-align: center;
+  justify-content: left;
+  font-family: 'Raleway', sans-serif;
 }
 
 input {
-    background-color: rgb(245, 252, 252);
-    width: 300px;
-    padding: 1.5em 2.2em;
-    line-height: 1em;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    border: 0;
+  background-color: rgb(245, 252, 252);
+  width: 300px;
+  padding: 1.5em 2.2em;
+  line-height: 1em;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border: 0;
 }
 
 select {
-    background-color: rgb(245, 252, 252);
-    width: 356px;
-    padding: 1.5em 2.2em;
-    line-height: 1em;
-    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
-    border: 0;
+  background-color: rgb(245, 252, 252);
+  width: 356px;
+  padding: 1.5em 2.2em;
+  line-height: 1em;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  border: 0;
 }
 
 select::after {
@@ -39,23 +41,23 @@ select::after {
 }
 
 .form {
-    display: grid;
-    justify-content: center;
-    align-items: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 .menu {
-    display: grid;
-    justify-content: center;
-    align-items: center;
+  display: grid;
+  justify-content: center;
+  align-items: center;
 }
 
 p {
-    font-family: Clarkson,Helvetica,sans-serif;
-    font-weight: 100;
-    line-height: 1.5em;
-    text-decoration: none;
-    color: black;
+  font-family: Clarkson, Helvetica, sans-serif;
+  font-weight: 100;
+  line-height: 1.5em;
+  text-decoration: none;
+  color: black;
 }
 
 a {
@@ -64,13 +66,13 @@ a {
 
 .button-48 {
   appearance: none;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   border-width: 0;
   box-sizing: border-box;
   color: #000000;
   cursor: pointer;
   display: inline-block;
-  font-family: Clarkson,Helvetica,sans-serif;
+  font-family: Clarkson, Helvetica, sans-serif;
   font-size: 14px;
   font-weight: 500;
   letter-spacing: 0;
@@ -84,8 +86,11 @@ a {
   text-decoration: none;
   text-rendering: geometricprecision;
   text-transform: uppercase;
-  transition: opacity 300ms cubic-bezier(.694, 0, 0.335, 1),background-color 100ms cubic-bezier(.694, 0, 0.335, 1),color 100ms cubic-bezier(.694, 0, 0.335, 1);
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  transition: opacity 300ms cubic-bezier(0.694, 0, 0.335, 1),
+    background-color 100ms cubic-bezier(0.694, 0, 0.335, 1),
+    color 100ms cubic-bezier(0.694, 0, 0.335, 1);
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   user-select: none;
   -webkit-user-select: none;
   touch-action: manipulation;
@@ -94,17 +99,18 @@ a {
 }
 
 .button-48:before {
-  animation: opacityFallbackOut .5s step-end forwards;
+  animation: opacityFallbackOut 0.5s step-end forwards;
   backface-visibility: hidden;
-  background-color: #EBEBEB;
+  background-color: #ebebeb;
   clip-path: polygon(-1% 0, 0 0, -25% 100%, -1% 100%);
-  content: "";
+  content: '';
   height: 100%;
   left: 0;
   position: absolute;
   top: 0;
   transform: translateZ(0);
-  transition: clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1), -webkit-clip-path .5s cubic-bezier(.165, 0.84, 0.44, 1);
+  transition: clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1),
+    -webkit-clip-path 0.5s cubic-bezier(0.165, 0.84, 0.44, 1);
   width: 100%;
 }
 
@@ -114,7 +120,7 @@ a {
 }
 
 .button-48:after {
-  background-color: #FFFFFF;
+  background-color: #ffffff;
 }
 
 .button-48 span {
@@ -122,8 +128,8 @@ a {
   position: relative;
 }
 
-.inputContainer{
-  display:flex;
+.inputContainer {
+  display: flex;
   justify-content: center;
   align-items: center;
   margin: 0px;
@@ -145,37 +151,42 @@ a {
   opacity: 1;
 }
 
-td{
-    border: 1px solid black;
-    text-align: center;
-    font-size: 2rem;
-    padding: 8px;
+td {
+  border: 1px solid black;
+  text-align: center;
+  font-size: 2rem;
+  padding: 8px;
 }
-tr{
-    background-color: #f2f2f2;
-    display:flex;
+tr {
+  background-color: #f2f2f2;
+  display: flex;
 }
 tr:nth-child(even) {
   background-color: #ffffff;
 }
-.id{
-    width: 45px;
-}.date{
-    width: 305px;
+.id {
+  width: 45px;
+}
+.date {
+  width: 305px;
 }
 
-.customer_id{
-    width: 176px;
+.customer_id {
+  width: 176px;
 }
-.employee_id{
-    width: 183px;
+.employee_id {
+  width: 183px;
 }
-.food_id{
-    width: 118px;
+.food_id {
+  width: 118px;
+}
+
+.addField {
+  width: 40px;
 }
 
 table {
-  border-color: #FFFFFF;
+  border-color: #ffffff;
 }
 
 tr {
@@ -183,8 +194,8 @@ tr {
 }
 
 td {
-  font-family: Clarkson,Helvetica,sans-serif;
-  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+  font-family: Clarkson, Helvetica, sans-serif;
+  box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px,
+    rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
   font-size: 14px;
 }
-

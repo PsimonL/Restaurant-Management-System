@@ -2,8 +2,8 @@ from django.shortcuts import render
 from django.http import JsonResponse
 from .forms import CustomerForm, FoodForm, OrderForm, EmployeeForm
 from .data_processing import Calculator
-from .models import Order, Customer, Catalog, Employee
-
+from .models import Order, Customer, Catalog, Employee,OrderItem
+import json
 
 def index(request):
     form_food = FoodForm(prefix='form_food')
@@ -76,20 +76,39 @@ def employee_panel(request):
 
 
 def order_endpoint(request):
-    orders = Order.objects.all()
-    data = {
-        'order': [
-            {
-                'id': "O" + str(order.id),
-                'date': order.date,
-                'customer_id': "C" + str(order.customer_id),
-                'employee_id': "E" + str(order.employee_id),
-                'food_id': order.food_id
-            }
-            for order in orders
-        ]
-    }
-    return JsonResponse(data=data)
+    if request.method == 'POST':
+        data = json.loads(request.body)
+        form = OrderForm(data)
+
+        if form.is_valid():
+            new_order = form.save()  # This creates a new Order instance
+
+            for key, value in data.items():
+                if key.startswith('item_id'):
+                    try:
+                        item = Catalog.objects.get(id=value)
+                        OrderItem.objects.create(orderId=new_order, itemId=item)
+                    except Catalog.DoesNotExist:
+                        return JsonResponse({'error': f'No Catalog item with id {value} found.'}, status=400)
+
+            return JsonResponse({'message': 'Order and OrderItems created successfully.'}, status=201)
+        else:
+            return JsonResponse({'errors': form.errors}, status=400)
+
+    elif request.method == 'GET':
+        orders = Order.objects.all()
+        data = {
+            'order': [
+                {
+                    'id': "O" + str(order.id),
+                    'date': order.date,
+                    'customer_id': "C" + str(order.customer_id),
+                    'employee_id': "E" + str(order.employee_id)
+                }
+                for order in orders
+            ]
+        }
+        return JsonResponse(data=data)
 
 
 def customer_endpoint(request):
