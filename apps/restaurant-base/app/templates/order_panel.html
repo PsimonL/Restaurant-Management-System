@@ -31,7 +31,7 @@
           </button>
         </a>
       </div>
-      <h1 style="margin-top: 0">Customer Panel</h1>
+      <h1 style="margin-top: 0">Order Panel</h1>
       <p>Fill form below to register the new order.</p>
     </div>
     <script>
@@ -42,9 +42,9 @@
         formCount++;
         var container = document.getElementById('nextFields');
         var newSelect = document.createElement('select');
-        newSelect.name = 'item_id_' + formCount;
+        newSelect.name = 'form_order-item_id' + formCount;
 
-        var originalSelect = document.getElementById('id_item_id');
+        var originalSelect = document.getElementById('id_form_order-item_id');
         for (var i = 0; i < originalSelect.options.length; i++) {
           var option = document.createElement('option');
           option.value = originalSelect.options[i].value;

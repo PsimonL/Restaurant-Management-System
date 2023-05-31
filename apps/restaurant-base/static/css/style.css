@@ -180,6 +180,12 @@ tr:nth-child(even) {
 .food_id {
   width: 118px;
 }
+.dishes {
+  width: 250px;
+}
+.price {
+  width: 70px;
+}
 
 .addField {
   width: 40px;

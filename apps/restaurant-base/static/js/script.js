@@ -30,6 +30,8 @@ function showReport() {
 
       var table = document.createElement('table');
       const orders = res.order;
+      const foodItems = res.foodItems;
+      const orderItems = res.orderItems;
 
       var header = document.createElement('tr');
       Object.keys(orders[0]).forEach((key) => {
@@ -38,6 +40,15 @@ function showReport() {
         keyCell.className = key;
         header.appendChild(keyCell);
       });
+      var keyCell = document.createElement('td');
+      keyCell.textContent = 'dishes';
+      keyCell.className = 'dishes';
+      header.appendChild(keyCell);
+      var keyCell = document.createElement('td');
+      keyCell.textContent = 'price';
+      keyCell.className = 'price';
+      header.appendChild(keyCell);
+
       table.appendChild(header);
       orders
         .filter((order) => {
@@ -48,10 +59,30 @@ function showReport() {
           var row = document.createElement('tr');
           Object.keys(order).forEach((key) => {
             var keyCell = document.createElement('td');
-            keyCell.textContent = order[key];
+            keyCell.textContent = order[key].substring(0, 10);
             keyCell.className = key;
             row.appendChild(keyCell);
           });
+          var keyCell = document.createElement('td');
+          const names = orderItems
+            .filter((item) => item.id === order.id)
+            .map((item) => item.itemName);
+          keyCell.textContent = String(names);
+          keyCell.className = 'dishes';
+          row.appendChild(keyCell);
+
+          var keyCell = document.createElement('td');
+          console.log(names);
+          const price = names
+            .map(
+              (name) => +foodItems.filter((food) => food.name === name)[0].price
+            )
+            .reduce((accumulator, currentValue) => {
+              return accumulator + currentValue;
+            }, 0);
+          keyCell.textContent = price;
+          keyCell.className = 'price';
+          row.appendChild(keyCell);
 
           table.appendChild(row);
         });
