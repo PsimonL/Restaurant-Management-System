@@ -55,12 +55,19 @@ def order_panel(request):
     if request.method == 'POST':
         form_order = OrderForm(request.POST, prefix='form_order')
         if form_order.is_valid():
-            form_order.save()
-    else:
-        form_order = OrderForm()
+            order = form_order.save()
+            # Creating OrderItem for each item_id in the POST data
+            for key, value in request.POST.items():
+                if key.startswith("form_order-item_id"):
+                    print("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx")
+                    item_id = int(value)  # assuming the value is the id of the Catalog
+                    item = Catalog.objects.get(pk=item_id)
+                    OrderItem.objects.create(orderId=order, itemId=item)
+
 
     context = {'form_order': form_order}
     return render(request, 'order_panel.html', context=context)
+
 
 def employee_panel(request):
     form_employee = EmployeeForm(prefix='form_employee')
@@ -76,27 +83,12 @@ def employee_panel(request):
 
 
 def order_endpoint(request):
-    if request.method == 'POST':
-        data = json.loads(request.body)
-        form = OrderForm(data)
 
-        if form.is_valid():
-            new_order = form.save()  # This creates a new Order instance
-
-            for key, value in data.items():
-                if key.startswith('item_id'):
-                    try:
-                        item = Catalog.objects.get(id=value)
-                        OrderItem.objects.create(orderId=new_order, itemId=item)
-                    except Catalog.DoesNotExist:
-                        return JsonResponse({'error': f'No Catalog item with id {value} found.'}, status=400)
-
-            return JsonResponse({'message': 'Order and OrderItems created successfully.'}, status=201)
-        else:
-            return JsonResponse({'errors': form.errors}, status=400)
-
-    elif request.method == 'GET':
+    if request.method == 'GET':
         orders = Order.objects.all()
+        orderItems = OrderItem.objects.all()
+        foodItems = Catalog.objects.all()
+        customers = Customer.objects.all()
         data = {
             'order': [
                 {
@@ -105,7 +97,28 @@ def order_endpoint(request):
                     'customer_id': "C" + str(order.customer_id),
                     'employee_id': "E" + str(order.employee_id)
                 }
-                for order in orders
+                for order in orders],
+            'orderItems': [
+                {
+                    'id': "O" + str(orderItem.orderId.id),
+                    'itemName': str(orderItem.itemId)
+                }
+                for orderItem in orderItems
+            ],
+            'foodItems': [
+                {
+                    'id': str(foodItem.id),
+                    'name': str(foodItem.catalog_dish),
+                    'price':  str(foodItem.catalog_price)
+                }
+                for foodItem in foodItems
+            ],
+            'customers': [
+                {
+                    'id':'C'+ str(customer.id),
+                    'name': str(customer.customer_name)
+                }
+                for customer in customers
             ]
         }
         return JsonResponse(data=data)

@@ -3,6 +3,10 @@ from .models import Customer, Catalog, Order, Employee,OrderItem
 
 
 class CustomerForm(ModelForm):
+
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['customer'] = CustomerChoiceField(queryset=Customer.objects.all(), required=True)
     class Meta:
         model = Customer
         fields = '__all__'
